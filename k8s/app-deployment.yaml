@@ -15,18 +15,28 @@ spec:
       containers:
       - name: webapp
         image: mon-app-web:v3
+        imagePullPolicy: Never
         ports:
         - containerPort: 3000
         env:
+        # CONFIGURATION (Via ConfigMap)
         - name: DB_HOST
-          value: "postgres-service"
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: db-host
         - name: DB_PORT
-          value: "5432"
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: db-port
         - name: DB_NAME
           valueFrom:
-            secretKeyRef:
-              name: db-secret
-              key: postgres-db
+            configMapKeyRef:
+              name: app-config
+              key: db-name
+              
+        # SECRETS (Via Secret)
         - name: DB_USER
           valueFrom:
             secretKeyRef:
