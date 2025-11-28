@@ -15,11 +15,11 @@ spec:
       containers:
       - name: webapp
         image: mon-app-web:v3
-        imagePullPolicy: Never
+        imagePullPolicy: Never  # Important pour tes tests locaux !
         ports:
         - containerPort: 3000
         env:
-        # CONFIGURATION (Via ConfigMap)
+        # --- CONFIGURATION (Via ConfigMap) ---
         - name: DB_HOST
           valueFrom:
             configMapKeyRef:
@@ -36,7 +36,7 @@ spec:
               name: app-config
               key: db-name
               
-        # SECRETS (Via Secret)
+        # --- SECRETS (Via Secret) ---
         - name: DB_USER
           valueFrom:
             secretKeyRef:
