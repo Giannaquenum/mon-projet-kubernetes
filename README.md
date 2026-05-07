@@ -28,3 +28,5 @@ Ce projet démontre l'utilisation avancée des objets Kubernetes :
 *   **`app/`** : Code source de l'application Node.js et Dockerfile.
 *   **`k8s/`** : Fichiers manifestes YAML pour le déploiement Kubernetes.
 *   **`database/`** : Scripts SQL d'initialisation.
+
+ping.exe -t 192.168.1.11 | ForEach {"$(Get-Date -Format 'HH:mm:ss') - $_"} | Tee-Object -FilePath "$env:USERPROFILE\Desktop\Log_PC2.txt" -Append
